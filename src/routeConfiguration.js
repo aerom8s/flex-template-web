@@ -23,6 +23,7 @@ import {
   TermsOfServicePage,
   TransactionPage,
   OperatorAuthPage,
+  ProfileSettingsOperatorPage,
 } from './containers';
 
 // routeConfiguration needs to initialize containers first
@@ -151,6 +152,18 @@ const routeConfiguration = () => {
       authPage: 'LoginPage',
       component: props => <ProfileSettingsPage {...props} />,
     },
+    // ***************************
+    // operator path for settings
+    // USE ROUTE WHEN ON OPERATOR
+    // SETTINGS PAGE
+    // ***************************
+    {
+      path: '/operator/profile-settings',
+      name: 'ProfileSettingsOperatorPage',
+      auth: true,
+      authPage: 'LoginPage',
+      component: props => <ProfileSettingsOperatorPage {...props} />,
+    },
     {
       path: '/login',
       name: 'LoginPage',
@@ -159,7 +172,7 @@ const routeConfiguration = () => {
     {
       path: '/signup',
       name: 'SignupPage',
-      component: props => <AuthenticationPage {...props} tab="signup" />,
+      component: props => <OperatorAuthPage {...props} tab="signup" />,
     },
     {
       // ***************************

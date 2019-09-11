@@ -27,3 +27,4 @@ export { default as SignupFormOperator } from './SignupFormOperator/SignupFormOp
 export { default as EditAircraftDescriptionForm } from './EditAircraftDescriptionForm/EditAircraftDescriptionForm';
 export { default as EditAircraftFeaturesForm } from './EditAircraftFeaturesForm/EditListingFeaturesForm';
 export { default as EditAircraftPricingForm } from './EditAircraftPricingForm/EditAircraftPricingForm';
+export { default as ProfileSettingsOperatorForm } from './ProfileSettingsOperatorForm/ProfileSettingsOperatorForm';

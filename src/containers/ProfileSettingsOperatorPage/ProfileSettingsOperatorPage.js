@@ -16,7 +16,7 @@ import {
   Footer,
   NamedLink,
 } from '../../components';
-import { ProfileSettingsForm } from '../../forms';
+import { ProfileSettingsOperatorForm } from '../../forms';
 import { TopbarContainer } from '..';
 
 import { updateProfile, uploadImage } from './ProfileSettingsOperatorPage.duck';
@@ -72,7 +72,7 @@ export class ProfileSettingsPageComponent extends Component {
     const profileImage = image || { imageId: profileImageId };
 
     const profileSettingsForm = user.id ? (
-      <ProfileSettingsForm
+      <ProfileSettingsOperatorForm
         className={css.form}
         currentUser={currentUser}
         initialValues={{ firstName, lastName, bio, profileImage: user.profileImage }}

@@ -202,14 +202,25 @@ export const signupOperator = params => (dispatch, getState, sdk) => {
   const { email, password, displayName, ...rest } = params;
 
   const createUserParams = isEmpty(rest)
-    ? { email, password, firstName: ' ', lastName: ' ', displayName, isOperator: true }
+    ? {
+        email,
+        password,
+        firstName: ' ',
+        lastName: ' ',
+        displayName,
+        publicData: {
+          isOperator: true,
+        },
+      }
     : {
         email,
         password,
         firstName: ' ',
         lastName: ' ',
         displayName,
-        isOperator: true,
+        publicData: {
+          isOperator: true,
+        },
         protectedData: { ...rest },
       };
 

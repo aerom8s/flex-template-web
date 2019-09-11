@@ -139,17 +139,14 @@ export class OperatorAuthPageComponent extends Component {
     ];
 
     const handleSubmitSignup = values => {
-      const { cname, rest } = values;
+      const { cname, ...rest } = values;
       // ************************************************************
       // send display name to sign up and add first/last name fields
       // with white space.
       // first/last are REQUIRED for new user
       // left blank until operator goes to settings to change.
       // ************************************************************
-      rest.isOperator = true;
       const params = { displayName: cname.trim(), ...rest };
-      console.log(params);
-      return;
       submitSignup(params);
     };
 
