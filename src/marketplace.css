@@ -24,7 +24,7 @@
     /* Gradient direction and overlaying the black color on top of the image for better readability */
     background: linear-gradient(-45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
       url('../../assets/background-1440.jpg');
-  
+
     /* Add loading color for the div */
     background-color: var(--matterColor);
 
@@ -39,12 +39,12 @@
       border: solid 36px var(--matterColorBright);
     }
   }
-  
+
   --backgroundImageOperatorAuth: {
     /* Gradient direction and overlaying the black color on top of the image for better readability */
     background: linear-gradient(-45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
       url('../../assets/operator-mountains.jpg');
-      /* Add loading color for the div */
+    /* Add loading color for the div */
     background-color: var(--matterColor);
 
     /* Cover the whole screen with the background image */
@@ -64,7 +64,7 @@
   --marketplaceColor: #c0392b;
   --marketplaceColorLight: #ff4c38;
   --marketplaceColorDark: #8c291e;
-  --marketplaceSecondaryColor: #1F5DAB;
+  --marketplaceSecondaryColor: #1f5dab;
   --marketplaceSecondaryColorDarker: #1a4e8e;
 
   /* Used with inline CSS SVGs */
