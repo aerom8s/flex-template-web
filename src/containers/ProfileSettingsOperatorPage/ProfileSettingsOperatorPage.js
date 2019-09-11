@@ -17,10 +17,10 @@ import {
   NamedLink,
 } from '../../components';
 import { ProfileSettingsForm } from '../../forms';
-import { TopbarContainer } from '../../containers';
+import { TopbarContainer } from '..';
 
-import { updateProfile, uploadImage } from './ProfileSettingsPage.duck';
-import css from './ProfileSettingsPage.css';
+import { updateProfile, uploadImage } from './ProfileSettingsOperatorPage.duck';
+import css from './ProfileSettingsOperatorPage.css';
 
 const onImageUploadHandler = (values, fn) => {
   const { id, imageId, file } = values;
@@ -87,7 +87,7 @@ export class ProfileSettingsPageComponent extends Component {
     ) : null;
 
     const title = intl.formatMessage({ id: 'ProfileSettingsPage.title' });
-    console.log(user);
+
     return (
       <Page className={css.root} title={title} scrollingDisabled={scrollingDisabled}>
         <LayoutSingleColumn>

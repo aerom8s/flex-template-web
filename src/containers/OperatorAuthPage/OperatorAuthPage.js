@@ -139,14 +139,17 @@ export class OperatorAuthPageComponent extends Component {
     ];
 
     const handleSubmitSignup = values => {
-      const { cname, ...rest } = values;
+      const { cname, rest } = values;
       // ************************************************************
       // send display name to sign up and add first/last name fields
       // with white space.
       // first/last are REQUIRED for new user
       // left blank until operator goes to settings to change.
       // ************************************************************
+      rest.isOperator = true;
       const params = { displayName: cname.trim(), ...rest };
+      console.log(params);
+      return;
       submitSignup(params);
     };
 
@@ -250,7 +253,9 @@ export class OperatorAuthPageComponent extends Component {
             <TopbarContainer className={topbarClasses} />
           </LayoutWrapperTopbar>
           <LayoutWrapperMain className={css.layoutWrapperMain}>
-            <div className={css.root}>{true ? emailVerificationContent : formContent}</div>
+            <div className={css.root}>
+              {showEmailVerification ? emailVerificationContent : formContent}
+            </div>
             <Modal
               id="AuthenticationPage.tos"
               isOpen={this.state.tosModalOpen}
