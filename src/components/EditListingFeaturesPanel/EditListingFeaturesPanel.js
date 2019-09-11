@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { LISTING_STATE_DRAFT } from '../../util/types';
 import { ensureListing } from '../../util/data';
-import { EditListingFeaturesForm } from '../../forms';
+import { EditAircraftFeaturesForm } from '../../forms';
 import { ListingLink } from '../../components';
 
 import css from './EditListingFeaturesPanel.css';
@@ -45,7 +45,7 @@ const EditListingFeaturesPanel = props => {
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
-      <EditListingFeaturesForm
+      <EditAircraftFeaturesForm
         className={css.form}
         name={FEATURES_NAME}
         initialValues={initialValues}

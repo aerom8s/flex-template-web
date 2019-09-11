@@ -219,7 +219,15 @@ const EditListingWizardTab = props => {
           {...panelProps(PRICING)}
           submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
           onSubmit={values => {
-            onCompleteEditListingWizardTab(tab, values);
+            console.log(values);
+            const { price, planUnits } = values;
+            const updatedValues = {
+              price,
+              publicData: {
+                planUnits,
+              },
+            };
+            onCompleteEditListingWizardTab(tab, updatedValues);
           }}
         />
       );

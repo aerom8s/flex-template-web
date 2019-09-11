@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { ensureOwnListing } from '../../util/data';
 import { ListingLink } from '../../components';
 import { LISTING_STATE_DRAFT } from '../../util/types';
-import { EditListingDescriptionForm } from '../../forms';
+import { EditAircraftDescriptionForm } from '../../forms';
 import config from '../../config';
 
 import css from './EditListingDescriptionPanel.css';
@@ -25,7 +25,13 @@ const EditListingDescriptionPanel = props => {
 
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
-  const { description, title, publicData } = currentListing.attributes;
+  const {
+    make,
+    model,
+    numberOfSeats,
+    aircraftYear,
+    aircraftType,
+  } = currentListing.attributes.publicData;
 
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const panelTitle = isPublished ? (
@@ -36,20 +42,25 @@ const EditListingDescriptionPanel = props => {
   ) : (
     <FormattedMessage id="EditListingDescriptionPanel.createListingTitle" />
   );
-
+  console.log(currentListing);
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
-      <EditListingDescriptionForm
+      <EditAircraftDescriptionForm
         className={css.form}
-        initialValues={{ title, description, category: publicData.category }}
+        initialValues={{ make, model, numberOfSeats, aircraftYear, aircraftType }}
         saveActionMsg={submitButtonText}
         onSubmit={values => {
-          const { title, description, category } = values;
+          const { make, model, numberOfSeats, aircraftYear, aircraftType } = values;
           const updateValues = {
-            title: title.trim(),
-            description,
-            publicData: { category },
+            title: `${make}, ${model}, ${aircraftType}, ${aircraftYear}`,
+            publicData: {
+              make: make.trim(),
+              model: model.trim(),
+              numberOfSeats,
+              aircraftYear,
+              aircraftType,
+            },
           };
 
           onSubmit(updateValues);

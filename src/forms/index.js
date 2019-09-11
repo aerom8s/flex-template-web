@@ -24,3 +24,6 @@ export { default as SignupForm } from './SignupForm/SignupForm';
 export { default as StripePaymentForm } from './StripePaymentForm/StripePaymentForm';
 export { default as TopbarSearchForm } from './TopbarSearchForm/TopbarSearchForm';
 export { default as SignupFormOperator } from './SignupFormOperator/SignupFormOperator';
+export { default as EditAircraftDescriptionForm } from './EditAircraftDescriptionForm/EditAircraftDescriptionForm';
+export { default as EditAircraftFeaturesForm } from './EditAircraftFeaturesForm/EditListingFeaturesForm';
+export { default as EditAircraftPricingForm } from './EditAircraftPricingForm/EditAircraftPricingForm';
