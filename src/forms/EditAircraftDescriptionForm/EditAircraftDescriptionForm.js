@@ -2,7 +2,7 @@ import React from 'react';
 import { bool, func, shape, string } from 'prop-types';
 import { compose } from 'redux';
 import { Form as FinalForm, FormSpy } from 'react-final-form';
-import { intlShape, injectIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 import classNames from 'classnames';
 import { propTypes } from '../../util/types';
 import { maxLength, required, composeValidators } from '../../util/validators';
