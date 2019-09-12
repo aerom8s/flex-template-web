@@ -45,15 +45,51 @@ export class ProfileSettingsPageComponent extends Component {
     } = this.props;
 
     const handleSubmit = values => {
-      const { firstName, lastName, bio: rawBio } = values;
+      // these are all values from form changed for operator
+      const {
+        address,
+        bio: rawBio,
+        closeHours,
+        companyName,
+        facebook,
+        instagram,
+        linkedin,
+        openHours,
+        twitter,
+        websiteUrl,
+        thruDays,
+        openDays,
+      } = values;
 
       // Ensure that the optional bio is a string
       const bio = rawBio || '';
 
       const profile = {
-        firstName: firstName.trim(),
-        lastName: lastName.trim(),
         bio,
+        displayName: companyName,
+        // public data for all inputs in form besides above
+        publicData: {
+          address: address || '',
+          // hoursOfOps is an array so
+          // +add creates multipl objects
+          // when implemented
+          hoursOfOps: [
+            {
+              openHours: openHours || '',
+              thruDays: thruDays || '',
+              openDays: openDays || '',
+              closeHours: closeHours || '',
+            },
+          ],
+          // list of all social media accounts
+          social: {
+            linkedin: linkedin || '',
+            facebook: facebook || '',
+            instagram: instagram || '',
+            twitter: twitter || '',
+            websiteUrl: websiteUrl || '',
+          },
+        },
       };
       const uploadedImage = this.props.image;
 
@@ -67,7 +103,28 @@ export class ProfileSettingsPageComponent extends Component {
     };
 
     const user = ensureCurrentUser(currentUser);
-    const { firstName, lastName, bio } = user.attributes.profile;
+    const { displayName, bio, publicData } = user.attributes.profile;
+    let initial = {};
+    // profile comes back empty on first pass
+    // check for public data before destructuring
+    if (publicData) {
+      const { address, hoursOfOps, social } = publicData;
+      const { thruDays, openDays, openHours, closeHours } = hoursOfOps[0];
+      const { facebook, instagram, linkedin, twitter, websiteUrl } = social;
+
+      // set all needed data from public data
+      // to be displayed here
+      initial.address = address;
+      initial.thruDays = thruDays;
+      initial.openDays = openDays;
+      initial.openHours = openHours;
+      initial.closeHours = closeHours;
+      initial.facebook = facebook;
+      initial.instagram = instagram;
+      initial.linkedin = linkedin;
+      initial.twitter = twitter;
+      initial.websiteUrl = websiteUrl;
+    }
     const profileImageId = user.profileImage ? user.profileImage.id : null;
     const profileImage = image || { imageId: profileImageId };
 
@@ -75,7 +132,13 @@ export class ProfileSettingsPageComponent extends Component {
       <ProfileSettingsOperatorForm
         className={css.form}
         currentUser={currentUser}
-        initialValues={{ firstName, lastName, bio, profileImage: user.profileImage }}
+        initialValues={{
+          companyName: displayName,
+          bio,
+          profileImage: user.profileImage,
+          // spread initial for all publicData displayed
+          ...initial,
+        }}
         profileImage={profileImage}
         onImageUpload={e => onImageUploadHandler(e, onImageUpload)}
         uploadInProgress={uploadInProgress}

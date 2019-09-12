@@ -9,6 +9,7 @@ import { ensureCurrentUser } from '../../util/data';
 import config from '../../config';
 import { propTypes } from '../../util/types';
 import { isUploadImageOverLimitError } from '../../util/errors';
+import { required } from '../../util/validators';
 import {
   Form,
   Avatar,
@@ -139,6 +140,14 @@ class ProfileSettingsFormComponent extends Component {
           const companyNamePlaceholder = intl.formatMessage({
             id: 'ProfileSettingsOperatorForm.companyNamePlaceholder',
           });
+          // ******************************
+          // Display Name is required in db
+          // This is only field REQUIRED
+          // ******************************
+          const companyNameRequiredMessage = intl.formatMessage({
+            id: 'ProfileSettinsOperatorForm.companyNameRequired',
+          });
+          const companyNameRequired = required(companyNameRequiredMessage);
 
           // Bio
           const bioLabel = intl.formatMessage({
@@ -397,6 +406,7 @@ class ProfileSettingsFormComponent extends Component {
                   name="companyName"
                   label={companyNameLabel}
                   placeholder={companyNamePlaceholder}
+                  validate={companyNameRequired}
                 />
               </div>
               <div className={classNames(css.sectionContainer)}>
@@ -458,16 +468,16 @@ class ProfileSettingsFormComponent extends Component {
                   <FormattedMessage id="ProfileSettingsOperatorForm.businessHoursHeading" />
                 </h3>
                 <div className={css.nameContainer}>
-                  <FieldSelect id="openDays" name="openDays" label="Open" placeholder="Monday">
-                    {daysOfWeek.map(day => (
-                      <option key={day} value={day}>
+                  <FieldSelect id="openDays" name="openDays" label="Open">
+                    {daysOfWeek.map((day, i) => (
+                      <option key={day} value={day} defaultValue={i === 0 ? 'selected' : null}>
                         {day}
                       </option>
                     ))}
                   </FieldSelect>
-                  <FieldSelect id="thruDays" name="thruDays" label="Thru" placeholder="Friday">
-                    {daysOfWeek.map(day => (
-                      <option key={day} value={day}>
+                  <FieldSelect id="thruDays" name="thruDays" label="Thru">
+                    {daysOfWeek.map((day, i) => (
+                      <option key={day} value={day} defaultValue={i === 0 ? 'selected' : null}>
                         {day}
                       </option>
                     ))}
@@ -487,8 +497,10 @@ class ProfileSettingsFormComponent extends Component {
                     placeholder={closeHoursPlaceholder}
                   />
                 </div>
-                {/* temp placeholder for +add */}
-                {extraHours && extraHours.map(hours => hours)}
+                {/* FUNCITIONALITY FOR +ADD HOURS
+                    WIP: Not finished, disabled for MVP or not???
+                     */}
+                {/* {extraHours && extraHours.map(hours => hours)} */}
                 <div role="presentation" onClick={() => getExtraHours(hoursOfOps)}>
                   +Add
                 </div>
