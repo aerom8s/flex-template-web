@@ -109,21 +109,24 @@ export class ProfileSettingsPageComponent extends Component {
     // check for public data before destructuring
     if (publicData) {
       const { address, hoursOfOps, social } = publicData;
-      const { thruDays, openDays, openHours, closeHours } = hoursOfOps[0];
-      const { facebook, instagram, linkedin, twitter, websiteUrl } = social;
-
-      // set all needed data from public data
-      // to be displayed here
-      initial.address = address;
-      initial.thruDays = thruDays;
-      initial.openDays = openDays;
-      initial.openHours = openHours;
-      initial.closeHours = closeHours;
-      initial.facebook = facebook;
-      initial.instagram = instagram;
-      initial.linkedin = linkedin;
-      initial.twitter = twitter;
-      initial.websiteUrl = websiteUrl;
+      if (hoursOfOps && hoursOfOps[0]) {
+        const { thruDays, openDays, openHours, closeHours } = hoursOfOps[0];
+        initial.thruDays = thruDays;
+        initial.openDays = openDays;
+        initial.openHours = openHours;
+        initial.closeHours = closeHours;
+      }
+      if (social) {
+        const { facebook, instagram, linkedin, twitter, websiteUrl } = social;
+        // set all needed data from public data
+        // to be displayed here
+        initial.address = address;
+        initial.facebook = facebook;
+        initial.instagram = instagram;
+        initial.linkedin = linkedin;
+        initial.twitter = twitter;
+        initial.websiteUrl = websiteUrl;
+      }
     }
     const profileImageId = user.profileImage ? user.profileImage.id : null;
     const profileImage = image || { imageId: profileImageId };
