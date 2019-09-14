@@ -10,8 +10,77 @@ import { propTypes } from '../../util/types';
 import * as validators from '../../util/validators';
 import { isUploadImageOverLimitError } from '../../util/errors';
 import { Form, Avatar, Button, ImageFromFile, IconSpinner, FieldTextInput } from '../../components';
+import { Dropdown, Menu } from 'semantic-ui-react'
+import moment from 'moment'
 
 import css from './ProfileSettingsForm.css';
+
+const open = [
+  { key: 1, text: 'Monday', value: 1 },
+  { key: 2, text: 'Tuesday', value: 2 },
+  { key: 3, text: 'Wednesday', value: 3 },
+  { key: 4, text: 'Thursday', value: 4 },
+  { key: 5, text: 'Friday', value: 5 },
+  { key: 6, text: 'Saturday', value: 6 },
+  { key: 7, text: 'Sunday', value: 7 },
+]
+const thru = [
+  { key: 1, text: 'Monday', value: 1 },
+  { key: 2, text: 'Tuesday', value: 2 },
+  { key: 3, text: 'Wednesday', value: 3 },
+  { key: 4, text: 'Thursday', value: 4 },
+  { key: 5, text: 'Friday', value: 5 },
+  { key: 6, text: 'Saturday', value: 6 },
+  { key: 7, text: 'Sunday', value: 7 },
+]
+
+let timeCollection = [
+
+]
+
+const locale = 'en';
+let timeTemp = {
+  openHours: [],
+  halfHours: [],
+  key: 0,
+  value: 0
+}
+
+moment.locale(locale);
+
+for (let hour = 0; hour < 24; hour++) {
+  timeTemp.key += 1
+  timeTemp.value += 1
+  timeTemp.openHours.push(timeTemp.key)
+  timeTemp.openHours.push(moment({ hour }).format('h:mm A'));
+  timeTemp.openHours.push(timeTemp.value)
+  timeTemp.key += 1
+  timeTemp.value += 1
+  timeTemp.openHours.push(timeTemp.key)
+  timeTemp.openHours.push(
+    moment({
+      hour,
+      minute: 30
+    }).format('h:mm A')
+  );
+  timeTemp.openHours.push(timeTemp.value)
+}
+
+for (let count = 0; count < timeTemp.openHours.length; count++) {
+  if (typeof timeTemp.openHours[count] === "string") {
+    // console.log(timeTemp.openHours[count], "Count")
+    timeCollection.push({
+      text: timeTemp.openHours[count],
+      key: timeTemp.openHours[count - 1],
+      value: timeTemp.openHours[count + 1]
+    })
+  }
+
+  // console.log(timeTemp.openHours[count], "Count")
+}
+
+// console.log(timeTemp.openHours)
+console.log(timeCollection)
 
 const ACCEPT_IMAGES = 'image/*';
 const UPLOAD_CHANGE_DELAY = 2000; // Show spinner so that browser has time to load img srcset
@@ -379,6 +448,15 @@ class ProfileSettingsFormComponent extends Component {
               <h3 className={css.sectionTitle}>
                 <FormattedMessage id="ProfileSettingsForm.businessHeading" />
               </h3>
+
+              {/* <div style={{ display: "flex" }}> */}
+              <Menu compact>
+                <Dropdown placeholder="Monday" options={open} selection item />
+                <Dropdown placeholder="Friday" options={thru} selection item />
+                <Dropdown placeholder="7:30 AM" options={timeCollection} selection item />
+                <Dropdown placeholder="8:00 PM" options={timeCollection} selection item />
+              </Menu>
+              {/* </div> */}
 
               {submitError}
               <Button
