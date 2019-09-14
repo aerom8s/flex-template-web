@@ -72,6 +72,30 @@ class ProfileSettingsFormComponent extends Component {
           const firstNamePlaceholder = intl.formatMessage({
             id: 'ProfileSettingsForm.firstNamePlaceholder',
           });
+          const websiteUrlLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.websiteUrlLabel',
+          });
+          const websiteUrlPlaceholder = intl.formatMessage({
+            id: 'ProfileSettingsForm.websiteUrlPlaceholder',
+          });
+          const twitterLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.twitterLabel',
+          });
+          const instagramLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.instagramLabel',
+          });
+          const linkedInLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.linkedInLabel',
+          });
+          const twitterPlaceholder = intl.formatMessage({
+            id: 'ProfileSettingsForm.twitterPlaceholder',
+          });
+          const facebookLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.facebookLabel',
+          });
+          const firstNameExtra = intl.formatMessage({
+            id: 'ProfileSettingsForm.nameExtra',
+          });
           const firstNameRequiredMessage = intl.formatMessage({
             id: 'ProfileSettingsForm.firstNameRequired',
           });
@@ -152,15 +176,15 @@ class ProfileSettingsFormComponent extends Component {
                 </div>
               </div>
             ) : (
-              <div className={css.avatarPlaceholder}>
-                <div className={css.avatarPlaceholderText}>
-                  <FormattedMessage id="ProfileSettingsForm.addYourProfilePicture" />
+                <div className={css.avatarPlaceholder}>
+                  <div className={css.avatarPlaceholderText}>
+                    <FormattedMessage id="ProfileSettingsForm.addYourProfilePicture" />
+                  </div>
+                  <div className={css.avatarPlaceholderTextMobile}>
+                    <FormattedMessage id="ProfileSettingsForm.addYourProfilePictureMobile" />
+                  </div>
                 </div>
-                <div className={css.avatarPlaceholderTextMobile}>
-                  <FormattedMessage id="ProfileSettingsForm.addYourProfilePictureMobile" />
-                </div>
-              </div>
-            );
+              );
 
           const submitError = updateProfileError ? (
             <div className={css.error}>
@@ -266,7 +290,8 @@ class ProfileSettingsFormComponent extends Component {
                     placeholder={firstNamePlaceholder}
                     validate={firstNameRequired}
                   />
-                  <FieldTextInput
+
+                  {/* <FieldTextInput
                     className={css.lastName}
                     type="text"
                     id="lastName"
@@ -274,24 +299,87 @@ class ProfileSettingsFormComponent extends Component {
                     label={lastNameLabel}
                     placeholder={lastNamePlaceholder}
                     validate={lastNameRequired}
-                  />
+                  /> */}
                 </div>
+                <h3 className={css.sectionTitle} style={{ marginTop: "2%" }}>
+                  <FormattedMessage id="ProfileSettingsForm.nameExtra" />
+                </h3>
               </div>
-              <div className={classNames(css.sectionContainer, css.lastSection)}>
+              <div className={classNames(css.sectionContainer)}>
                 <h3 className={css.sectionTitle}>
                   <FormattedMessage id="ProfileSettingsForm.bioHeading" />
                 </h3>
                 <FieldTextInput
                   type="textarea"
+                  className={css.textAreaStyle}
                   id="bio"
                   name="bio"
                   label={bioLabel}
                   placeholder={bioPlaceholder}
                 />
-                <p className={css.bioInfo}>
-                  <FormattedMessage id="ProfileSettingsForm.bioInfo" />
-                </p>
               </div>
+              <div className={classNames(css.sectionContainer, css.lastSection)}>
+
+
+                <h3 className={css.sectionTitle}>
+                  <FormattedMessage id="ProfileSettingsForm.socialHeading" />
+                </h3>
+                <FieldTextInput
+                  className={css.firstName}
+                  type="text"
+                  id="websiteURL"
+                  name="websiteURL"
+                  label={websiteUrlLabel}
+                  placeholder={websiteUrlPlaceholder}
+                // validate={websiteUrlRequired}
+                />
+                <br></br>
+                <FieldTextInput
+                  className={css.firstName}
+                  type="text"
+                  id="facebook"
+                  name="facebook"
+                  label={facebookLabel}
+                  placeholder={websiteUrlPlaceholder}
+                // validate={websiteUrlRequired}
+                />
+                <br></br>
+                <FieldTextInput
+                  className={css.firstName}
+                  type="text"
+                  id="twitter"
+                  name="twitter"
+                  label={twitterLabel}
+                  placeholder={twitterPlaceholder}
+                // validate={websiteUrlRequired}
+                />
+                <br></br>
+                <FieldTextInput
+                  className={css.firstName}
+                  type="text"
+                  id="instagram"
+                  name="instagram"
+                  label={instagramLabel}
+                  placeholder={twitterPlaceholder}
+                // validate={websiteUrlRequired}
+                />
+                <br></br>
+                <FieldTextInput
+                  className={css.firstName}
+                  type="text"
+                  id="linkedIn"
+                  name="linkedIn"
+                  label={linkedInLabel}
+                  placeholder={websiteUrlPlaceholder}
+                // validate={websiteUrlRequired}
+                />
+              </div>
+
+
+              <h3 className={css.sectionTitle}>
+                <FormattedMessage id="ProfileSettingsForm.businessHeading" />
+              </h3>
+
               {submitError}
               <Button
                 className={css.submitButton}

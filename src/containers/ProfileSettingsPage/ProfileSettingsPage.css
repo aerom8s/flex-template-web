@@ -21,6 +21,7 @@
 .heading {
   margin-right: 24px;
   hyphens: auto;
+  font-size: 40px;
 }
 
 .profileLink {
@@ -37,6 +38,9 @@
 
   margin: 19px 0 0 auto;
   padding: 9px 16px 8px 16px;
+
+  background-color: black;
+  color: white;
 
   @media (--viewportMedium) {
     margin: 37px 0 0 auto;

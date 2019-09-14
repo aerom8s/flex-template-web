@@ -8,7 +8,9 @@
 }
 
 .inputSuccess {
-  border-bottom-color: var(--successColor);
+  /* border-bottom-color: var(--successColor); */
+  border-bottom-color: #1F5DAC;
+
 }
 
 .inputError {
