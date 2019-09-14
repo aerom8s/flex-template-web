@@ -141,3 +141,18 @@
     margin: auto 36px 0 36px;
   }
 }
+
+.noResultStyle {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.noResultBtn {
+  width: 30%;
+  height: 50px;
+  align-self: center;
+  margin-top: 4%;
+}

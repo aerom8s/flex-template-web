@@ -26,6 +26,7 @@ import {
   queryOwnListings,
 } from './ManageListingsPage.duck';
 import css from './ManageListingsPage.css';
+import { Button } from 'semantic-ui-react'
 
 // Pagination page size might need to be dynamic on responsive page layouts
 // Current design has max 3 columns 42 is divisible by 2 and 3
@@ -78,9 +79,15 @@ export class ManageListingsPageComponent extends Component {
 
     const noResults =
       listingsAreLoaded && pagination.totalItems === 0 ? (
-        <h1 className={css.title}>
-          <FormattedMessage id="ManageListingsPage.noResults" />
-        </h1>
+        <div className={css.noResultStyle}>
+          <h1 className={css.title}>
+            <FormattedMessage id="ManageListingsPage.noResults" />
+          </h1>
+          <p>But we can fix that, you can easily add aircraft <br /> to your account.
+        Lets get started.</p>
+        <Button className={css.noResultBtn} color="green">+ Add Aircraft</Button>
+        </div>
+
       ) : null;
 
     const heading =
@@ -92,8 +99,8 @@ export class ManageListingsPageComponent extends Component {
           />
         </h1>
       ) : (
-        noResults
-      );
+          noResults
+        );
 
     const page = queryParams ? queryParams.page : 1;
     const paginationLinks =
