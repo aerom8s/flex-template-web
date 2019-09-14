@@ -144,6 +144,12 @@ class ProfileSettingsFormComponent extends Component {
           const websiteUrlLabel = intl.formatMessage({
             id: 'ProfileSettingsForm.websiteUrlLabel',
           });
+          const addressLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.addressLabel',
+          });
+          const addressPlaceholder = intl.formatMessage({
+            id: 'ProfileSettingsForm.addressPlaceholder',
+          });
           const websiteUrlPlaceholder = intl.formatMessage({
             id: 'ProfileSettingsForm.websiteUrlPlaceholder',
           });
@@ -387,8 +393,7 @@ class ProfileSettingsFormComponent extends Component {
                   placeholder={bioPlaceholder}
                 />
               </div>
-              <div className={classNames(css.sectionContainer, css.lastSection)}>
-
+              <div className={classNames(css.sectionContainer)}>
 
                 <h3 className={css.sectionTitle}>
                   <FormattedMessage id="ProfileSettingsForm.socialHeading" />
@@ -449,14 +454,49 @@ class ProfileSettingsFormComponent extends Component {
                 <FormattedMessage id="ProfileSettingsForm.businessHeading" />
               </h3>
 
-              {/* <div style={{ display: "flex" }}> */}
-              <Menu compact>
-                <Dropdown placeholder="Monday" options={open} selection item />
-                <Dropdown placeholder="Friday" options={thru} selection item />
-                <Dropdown placeholder="7:30 AM" options={timeCollection} selection item />
-                <Dropdown placeholder="8:00 PM" options={timeCollection} selection item />
+              <Menu compact className={css.menuStyle}>
+                <div>
+                  <label className={css.menuLabel}>Open</label>
+                  <Dropdown placeholder="Monday" options={open} item />
+                </div>
+                <div>
+                  <label className={css.menuLabel}>Thru</label>
+                  <Dropdown placeholder="Friday" options={thru} item />
+                </div>
+                <div>
+                  <label className={css.menuLabel}>Open</label>
+                  <Dropdown placeholder="7:30 AM" options={timeCollection} item />
+                </div>
+                <div>
+                  <label className={css.menuLabel}>Close</label>
+                  <Dropdown placeholder="8:00 PM" options={timeCollection} item />
+                </div>
               </Menu>
-              {/* </div> */}
+              <br />
+              <h3 className={css.sectionTitle}>
+                <FormattedMessage id="ProfileSettingsForm.addTime" />
+              </h3>
+
+              <br />
+              <br />
+              <br />
+
+              <div className={classNames(css.sectionContainer, css.lastSection)}>
+                <h3 className={css.sectionTitle}>
+                  <FormattedMessage id="ProfileSettingsForm.locationHeading" />
+                </h3>
+
+                <FieldTextInput
+                  className={css.firstName}
+                  type="text"
+                  id="address"
+                  name="address"
+                  label={addressLabel}
+                  placeholder={addressPlaceholder}
+                // validate={websiteUrlRequired}
+                />
+              </div>
+
 
               {submitError}
               <Button

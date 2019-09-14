@@ -323,3 +323,13 @@
 .submitButton {
   margin-top: 24px;
 }
+
+.menuStyle {
+  border: none !important;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.menuLabel {
+ text-align: center;
+}
