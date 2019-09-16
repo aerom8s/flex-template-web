@@ -465,7 +465,7 @@ class ProfileSettingsFormComponent extends Component {
                 </div>
                 <div>
                   <label className={css.menuLabel}>Open</label>
-                  <Dropdown placeholder="7:30 AM" options={timeCollection} item />
+                  <Dropdown placeholder="7:30 AM" selection options={timeCollection} item />
                 </div>
                 <div>
                   <label className={css.menuLabel}>Close</label>

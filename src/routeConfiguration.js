@@ -8,6 +8,7 @@ import {
   EmailVerificationPage,
   InboxPage,
   LandingPage,
+  OperatorLandingPage,
   ListingPage,
   ManageListingsPage,
   OperatorAddAircraftPage,
@@ -53,6 +54,11 @@ const routeConfiguration = () => {
       path: '/',
       name: 'LandingPage',
       component: props => <LandingPage {...props} />,
+    },
+    {
+      path: '/operator',
+      name: 'OperatorLandingPage',
+      component: props => <OperatorLandingPage {...props} />,
     },
     {
       path: '/about',
