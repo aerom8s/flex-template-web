@@ -18,7 +18,8 @@ import {
     Footer,
 } from '../../components';
 import { TopbarContainer } from '../../containers';
-import { Button, Header, Icon, Segment } from 'semantic-ui-react';
+import { Container, Image, Header, Button } from 'semantic-ui-react'
+import operatorHero from '../../assets/operatorHero.jpg'
 
 import facebookImage from '../../assets/saunatimeFacebook-1200x630.jpg';
 import twitterImage from '../../assets/saunatimeTwitter-600x314.jpg';
@@ -59,9 +60,13 @@ export const LandingPageComponent = props => {
                     <TopbarContainer />
                 </LayoutWrapperTopbar>
                 <LayoutWrapperMain>
-                    <div className={css.heroContainer}>
-                        <SectionHero className={css.hero} history={history} location={location} />
-                    </div>
+                    <Container fluid>
+                        <Image className={css.operatorHeroStyle} src={operatorHero} fluid />
+                        <Header className={css.operatorHeroHeader} as='h1'>Private aviation, <br /> simplified.</Header>
+                        <p className={css.operatorHeroPara}>Aeromates powers the nation's top aviation operators, <br /> using technology to build
+                        the future of the industry.</p>
+                        <Button className={css.operatorHeroBtn} primary>Request a Demo</Button>
+                    </Container>
                 </LayoutWrapperMain>
                 <LayoutWrapperFooter>
                     <Footer />

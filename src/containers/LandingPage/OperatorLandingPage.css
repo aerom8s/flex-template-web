@@ -129,3 +129,35 @@
     top: calc(-1 * var(--LandingPage_sectionMarginTopLarge));
   }
 }
+
+.operatorHeroStyle {
+    height: 600px !important;
+    margin-top: -100px;
+    padding: 28px;
+}
+
+.operatorHeroHeader {
+    position: relative;
+    top: -432px;
+    left: 160px;
+    color: white !important;
+    font-size: 60px !important;
+}
+.operatorHeroPara {
+    position: relative;
+    top: -434px;
+    left: 160px;
+    color: white !important;
+    font-size: 19px !important;
+    font-weight: 300 !important;
+}
+.operatorHeroBtn {
+    position: relative;
+    top: -450px;
+    left: 160px;
+    color: white !important;
+    font-size: 15px !important;
+    font-weight: 300 !important;
+    padding: 18px !important;
+    width: 13%;
+}
