@@ -23,6 +23,7 @@ import operatorHero from '../../assets/operatorHero.jpg'
 
 import facebookImage from '../../assets/saunatimeFacebook-1200x630.jpg';
 import twitterImage from '../../assets/saunatimeTwitter-600x314.jpg';
+import tempImage from '../../assets/placeholder.png'
 import css from './OperatorLandingPage.css';
 
 export const LandingPageComponent = props => {
@@ -66,6 +67,30 @@ export const LandingPageComponent = props => {
                         <p className={css.operatorHeroPara}>Aeromates powers the nation's top aviation operators, <br /> using technology to build
                         the future of the industry.</p>
                         <Button className={css.operatorHeroBtn} primary>Request a Demo</Button>
+                        <div className={css.operatorContainerDiv}>
+                            <h2 className={css.operatorHeader}>How does it work?</h2>
+                            <div className={css.imageContainer}>
+                                <div className={css.cardContainer}>
+                                    <img className={css.imgStyle} src={tempImage} alt="student at desk" />
+                                    <h3>Create a custom profile for your company.</h3>
+                                </div>
+                                <div className={css.cardContainer}>
+                                    <img className={css.imgStyle} src={tempImage} alt="student at desk" />
+                                    <h3>Easily enter your aircraft, and <br /> and
+                                    set booking times for chartes, <br />
+                                        tours or training.</h3>
+                                </div>
+                                <div className={css.cardContainer}>
+                                    <img className={css.imgStyle} src={tempImage} alt="student at desk" />
+                                    <h3>That's it, you're open <br />
+                                        for Business.</h3>
+                                </div>
+                            </div>
+
+                            <div className={css.nextSection}>
+                                <h2 className={css.operatorHeader}>Why Aeromates?</h2>
+                            </div>
+                        </div>
                     </Container>
                 </LayoutWrapperMain>
                 <LayoutWrapperFooter>

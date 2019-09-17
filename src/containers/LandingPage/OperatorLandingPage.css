@@ -153,11 +153,37 @@
 }
 .operatorHeroBtn {
     position: relative;
-    top: -450px;
+    top: -436px;
     left: 160px;
     color: white !important;
     font-size: 15px !important;
     font-weight: 300 !important;
     padding: 18px !important;
-    width: 13%;
+    width: 20%;
+}
+.operatorContainerDiv {
+  margin-top: -16%;
+  background-color: #FAFAFC;
+}
+.operatorHeader {
+  text-align: center;
+  font-size: 45px;
+}
+.imageContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.cardContainer {
+  width: 25%;
+  border: 1px solid black;
+}
+.imgStyle {
+  width: 100%;
+  height: 350px;
+  border: 1px solid blue;
+}
+.nextSection {
+  margin-top: 3%;
+  background-color: white;
 }
