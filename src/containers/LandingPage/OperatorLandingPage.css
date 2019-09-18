@@ -1,7 +1,6 @@
 @import '../../marketplace.css';
-
 :root {
-  /*
+    /*
     These variables are available in global scope through ":root"
     element (<html> tag). Variables with the same names are going to
     overwrite each other if CSS Properties' (PostCSS plugin)
@@ -9,148 +8,155 @@
     are left to CSS bundle. We are planning to enable it in the future
     since browsers support CSS Properties already.
  */
-
-  --LandingPage_sectionMarginTop: 40px;
-  --LandingPage_sectionMarginTopMedium: 60px;
-  --LandingPage_sectionMarginTopLarge: 94px;
+    --LandingPage_sectionMarginTop: 40px;
+    --LandingPage_sectionMarginTopMedium: 60px;
+    --LandingPage_sectionMarginTopLarge: 94px;
 }
 
-.root {
-}
+.root {}
+
 
 /* heroContainer gives the height for SectionHero */
+
+
 /* Safari has a bug with vw padding inside flexbox. Therefore we need an extra div (container) */
+
+
 /* If you've lot of content for the hero, multiple lines of text, make sure to adjust min-heights for each media breakpoint accordingly */
+
 .heroContainer {
-  display: flex;
-  flex-direction: column;
-  min-height: 300px;
-  /* height: 67.5vh; */
-  height: 100%;
-  max-height: 600px;
-  padding: 0;
-
-  @media (--viewportMedium) {
-    min-height: 500px;
-    height: 70vh;
-    max-height: none;
-  }
-
-  @media (--viewportLarge) {
-    max-height: 800px;
-    min-height: 600px;
-    height: calc(70vh - var(--topbarHeightDesktop));
-  }
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    /* height: 67.5vh; */
+    height: 100%;
+    max-height: 600px;
+    padding: 0;
+    @media (--viewportMedium) {
+        min-height: 500px;
+        height: 70vh;
+        max-height: none;
+    }
+    @media (--viewportLarge) {
+        max-height: 800px;
+        min-height: 600px;
+        height: calc(70vh - var(--topbarHeightDesktop));
+    }
 }
 
 .hero {
-  flex-grow: 1;
-  justify-content: flex-end;
-  padding-bottom: 32px;
-
-  @media (--viewportMedium) {
-    padding-bottom: 83px;
-  }
-
-  @media (--viewportLarge) {
-    justify-content: center;
-    padding-top: 60px;
-  }
+    flex-grow: 1;
+    justify-content: flex-end;
+    padding-bottom: 32px;
+    @media (--viewportMedium) {
+        padding-bottom: 83px;
+    }
+    @media (--viewportLarge) {
+        justify-content: center;
+        padding-top: 60px;
+    }
 }
 
 .sections {
-  margin: 0;
-  padding-top: 1px;
+    margin: 0;
+    padding-top: 1px;
 }
 
 .section {
-  overflow: auto;
+    overflow: auto;
 }
+
 
 /* Square corners for the last section if it's even */
+
 .section:nth-of-type(2n):last-of-type {
-  @media (--viewportMedium) {
-    border-radius: 4px 4px 0 0;
-  }
+    @media (--viewportMedium) {
+        border-radius: 4px 4px 0 0;
+    }
 }
 
+
 /* Every other section has a light background */
+
 .section:nth-of-type(2n) {
-  background-color: var(--matterColorLight);
-  @media (--viewportMedium) {
-    border-radius: 4px;
-  }
+    background-color: var(--matterColorLight);
+    @media (--viewportMedium) {
+        border-radius: 4px;
+    }
 }
 
 .sectionContent {
-  margin: var(--LandingPage_sectionMarginTop) 24px 51px 24px;
-
-  @media (--viewportMedium) {
-    max-width: 100%;
-    margin: var(--LandingPage_sectionMarginTopMedium) 24px 60px 24px;
-  }
-
-  @media (--viewportLarge) {
-    max-width: 1128px;
-    padding: 0 36px 0 36px;
-    margin: var(--LandingPage_sectionMarginTopLarge) auto 93px auto;
-  }
-
-  @media (--viewportXLarge) {
-    max-width: 1056px;
-    padding: 0;
-  }
+    margin: var(--LandingPage_sectionMarginTop) 24px 51px 24px;
+    @media (--viewportMedium) {
+        max-width: 100%;
+        margin: var(--LandingPage_sectionMarginTopMedium) 24px 60px 24px;
+    }
+    @media (--viewportLarge) {
+        max-width: 1128px;
+        padding: 0 36px 0 36px;
+        margin: var(--LandingPage_sectionMarginTopLarge) auto 93px auto;
+    }
+    @media (--viewportXLarge) {
+        max-width: 1056px;
+        padding: 0;
+    }
 }
 
 .sectionContentFirstChild {
-  composes: sectionContent;
-  margin-top: 3vh;
+    composes: sectionContent;
+    margin-top: 3vh;
 }
 
+
 /* A bar on top of light sections */
+
 .section:nth-of-type(2n) .sectionContent::before {
-  background: var(--marketplaceColor);
-  content: '';
-  display: block;
-  width: 109px;
-  height: 6px;
+    background: var(--marketplaceColor);
+    content: '';
+    display: block;
+    width: 109px;
+    height: 6px;
+    /* Place the bar on top of .sectionContent top margin */
+    position: relative;
+    top: calc(-1 * var(--LandingPage_sectionMarginTop));
+    @media (--viewportMedium) {
+        width: 192px;
+        height: 8px;
+        top: calc(-1 * var(--LandingPage_sectionMarginTopMedium));
+    }
+    @media (--viewportLarge) {
+        top: calc(-1 * var(--LandingPage_sectionMarginTopLarge));
+    }
+}
 
-  /* Place the bar on top of .sectionContent top margin */
-  position: relative;
-  top: calc(-1 * var(--LandingPage_sectionMarginTop));
-
-  @media (--viewportMedium) {
-    width: 192px;
-    height: 8px;
-    top: calc(-1 * var(--LandingPage_sectionMarginTopMedium));
-  }
-
-  @media (--viewportLarge) {
-    top: calc(-1 * var(--LandingPage_sectionMarginTopLarge));
-  }
+.containerClass {
+    background-color: #FAFAFC;
+    padding-top: 122px;
 }
 
 .operatorHeroStyle {
-    height: 600px !important;
+    height: 630px !important;
     margin-top: -100px;
     padding: 28px;
 }
 
 .operatorHeroHeader {
     position: relative;
-    top: -432px;
+    top: -484px;
     left: 160px;
     color: white !important;
     font-size: 60px !important;
 }
+
 .operatorHeroPara {
     position: relative;
-    top: -434px;
+    top: -457px;
     left: 160px;
     color: white !important;
-    font-size: 19px !important;
-    font-weight: 300 !important;
+    font-size: 24px !important;
+    font-weight: 500 !important;
 }
+
 .operatorHeroBtn {
     position: relative;
     top: -436px;
@@ -161,71 +167,176 @@
     padding: 18px !important;
     width: 20%;
 }
+
 .operatorContainerDiv {
-  margin-top: -16%;
-  background-color: #FAFAFC;
+    margin-top: -16%;
+    background-color: #FAFAFC;
 }
+
 .operatorHeader {
-  text-align: center;
-  font-size: 45px;
-  /* padding-top: 110px; */
-  /* margin-top: 70px; */
-  /* border-bottom: 2px solid #1F5DAC; */
-  /* border-bottom-width: 6px; */
+    text-align: center;
+    font-size: 47px;
+    margin-bottom: 83px !important;
+    color: #494949;
+    /* padding-top: 110px; */
+    /* margin-top: 70px; */
+    /* border-bottom: 2px solid #1F5DAC; */
+    /* border-bottom-width: 6px; */
 }
+
 .operatorHeader2 {
-  text-align: center;
-  font-size: 45px;
-  padding-top: 110px;
-  margin-top: 70px;
-  border-bottom: 2px solid #1F5DAC;
-  border-bottom-width: 6px;
+    text-align: center;
+    font-size: 45px;
+    padding-top: 110px;
+    margin-top: 70px;
+    border-bottom: 2px solid #1F5DAC;
+    border-bottom-width: 7px;
+    color: #494949;
 }
+
 .imageContainer {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding-bottom: 78px;
 }
+
 .cardContainer {
-  width: 25%;
-  border: 1px solid black;
+    width: 25%;
+    /* border: 1px solid black; */
 }
+
+.cardPara {
+    margin-top: 39px;
+    font-size: 26px;
+    font-weight: 600;
+    color: #494949;
+}
+
 .imgStyle {
-  width: 100%;
-  height: 350px;
-  border: 1px solid blue;
+    width: 100%;
+    height: 415px;
+    border: 1px solid blue;
 }
+
 .nextSection {
-  margin-top: 3%;
-  background-color: white;
+    margin-top: 3%;
+    background-color: white;
 }
+
 .customerContainer {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  margin: auto;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin: auto;
 }
+
 .customerCard {
-  display: flex;
-  flex-direction: row;
-  width: 80%;
-  margin: 0 auto;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 129px;
+    background-color: #FAFAFC;
+    padding-top: 123px;
 }
+.customerCardNext {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 129px;
+    background-color: white;
+    padding-top: 123px;
+}
+
 .customerCardHeader {
-  font-size: 40px;
+    font-size: 40px;
 }
+
 .customerCardPara {
-  font-size: 20px;
-  color: #B3B3B4;
-  width: 110%;
+    font-size: 20px;
+    color: #B3B3B4;
+    width: 110%;
 }
+
 .customerCardInfo {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  padding: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 50px;
 }
+
 .customerImage {
-  width: 50%;
+    width: 50%;
+}
+
+.charterImage {
+    width: 21%;
+    position: relative;
+    left: 12%;
+}
+.tourPendingContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 261px;
+    border: 1px solid black;
+    background-color: #FAFAFC;
+}
+.tourPending {
+    border: 1px solid gray;
+    background-color: white;
+    color: #FFB516;
+    height: 50px;
+    width: 21%;
+    text-align: center;
+    padding: 13px;
+    border-radius: 4px;
+    position: relative;
+    left: 16%;
+    top: -10%;
+}
+.tourConfirmed {
+    border: 1px solid gray;
+    background-color: white;
+    color: #3FD280;
+    height: 50px;
+    width: 21%;
+    text-align: center;
+    padding: 13px;
+    border-radius: 4px;
+    align-self: flex-end;
+    position: relative;
+    right: 16%;
+    bottom: -10%;
+}
+.tourContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: auto;
+    width: 80%;
+}
+.tourProfileImg {
+    width: 25%;
+    height: auto;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+.tourCompany {
+    width: 25%;
+    height: auto;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+.tourArrows {
+    width: 15%;
+    height: 55%;
+    border: 1px solid black;
+    align-self: center;
 }
