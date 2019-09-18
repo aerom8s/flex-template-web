@@ -168,6 +168,18 @@
 .operatorHeader {
   text-align: center;
   font-size: 45px;
+  /* padding-top: 110px; */
+  /* margin-top: 70px; */
+  /* border-bottom: 2px solid #1F5DAC; */
+  /* border-bottom-width: 6px; */
+}
+.operatorHeader2 {
+  text-align: center;
+  font-size: 45px;
+  padding-top: 110px;
+  margin-top: 70px;
+  border-bottom: 2px solid #1F5DAC;
+  border-bottom-width: 6px;
 }
 .imageContainer {
   display: flex;
@@ -186,4 +198,34 @@
 .nextSection {
   margin-top: 3%;
   background-color: white;
+}
+.customerContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin: auto;
+}
+.customerCard {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: 0 auto;
+  align-items: center;
+}
+.customerCardHeader {
+  font-size: 40px;
+}
+.customerCardPara {
+  font-size: 20px;
+  color: #B3B3B4;
+  width: 110%;
+}
+.customerCardInfo {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 50px;
+}
+.customerImage {
+  width: 50%;
 }

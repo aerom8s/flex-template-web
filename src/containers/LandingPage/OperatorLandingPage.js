@@ -68,7 +68,9 @@ export const LandingPageComponent = props => {
                         the future of the industry.</p>
                         <Button className={css.operatorHeroBtn} primary>Request a Demo</Button>
                         <div className={css.operatorContainerDiv}>
-                            <h2 className={css.operatorHeader}>How does it work?</h2>
+                            <div style={{ display: "flex", justifyContent: "center" }}>
+                                <h2 className={css.operatorHeader}>How does it work?</h2>
+                            </div>
                             <div className={css.imageContainer}>
                                 <div className={css.cardContainer}>
                                     <img className={css.imgStyle} src={tempImage} alt="student at desk" />
@@ -88,7 +90,28 @@ export const LandingPageComponent = props => {
                             </div>
 
                             <div className={css.nextSection}>
-                                <h2 className={css.operatorHeader}>Why Aeromates?</h2>
+                                <div style={{ display: "flex", justifyContent: "center" }}>
+
+                                    <h2 className={css.operatorHeader2}>Why Aeromates?</h2>
+                                </div>
+
+                                <div className={css.customerContainer}>
+
+                                    <div className={css.customerCard}>
+                                        <div className={css.customerCardInfo}>
+                                            <h2 className={css.customerCardHeader}>Own your <br /> customers</h2>
+                                            <p className={css.customerCardPara}>Our best-in-class CRM comes standard, to <br />
+                                                make communicating with your customers <br />
+                                                easier than ever. Plus gain a greater insight <br />
+                                                into your business with our marketing <br />
+                                                analytics dashboard, at a level never before <br />
+                                                seen in the aviation industry.</p>
+                                        </div>
+                                        <img className={css.customerImage} src={tempImage} alt="tour pending / confirmed" />
+
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </Container>
