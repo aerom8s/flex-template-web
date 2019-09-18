@@ -18,13 +18,15 @@ import {
   Footer,
 } from '../../components';
 import { TopbarContainer } from '../../containers';
-import { Container, Image, Header, Button } from 'semantic-ui-react';
+import { Container, Image, Header, Button, Icon } from 'semantic-ui-react';
 import operatorHero from '../../assets/operatorHero.jpg';
 
 import facebookImage from '../../assets/saunatimeFacebook-1200x630.jpg';
 import twitterImage from '../../assets/saunatimeTwitter-600x314.jpg';
 import tempImage from '../../assets/placeholder.png';
 import charterCard from '../../assets/charterCard.png';
+import womanImage from '../../assets/Woman.svg';
+import operatorImage from '../../assets/Operator.svg';
 import css from './OperatorLandingPage.css';
 
 export const LandingPageComponent = props => {
@@ -128,9 +130,21 @@ export const LandingPageComponent = props => {
                     <div className={css.tourPendingContainer}>
                       <div className={css.tourPending}>Tour Pending</div>
                       <div className={css.tourContainer}>
-                          <img className={css.tourProfileImg} src={tempImage} alt="profile picture"/>
-                          <img className={css.tourArrows} src={tempImage} alt="arrows pointing to profile and charter company"/>
-                          <img className={css.tourCompany} src={tempImage} alt="company profile"/>
+                        <img
+                          className={css.tourProfileImg}
+                          src={womanImage}
+                          alt="profile picture"
+                        />
+                        {/* <img className={css.tourArrows} src={tempImage} alt="arrows pointing to profile and charter company"/> */}
+                        <Icon.Group size="huge">
+                          <Icon size="small" name="arrows horizontal" />
+                          <Icon size="small" name="arrows alternate horizontal" />
+                        </Icon.Group>
+                        <img
+                          className={css.tourCompany}
+                          src={operatorImage}
+                          alt="company profile"
+                        />
                       </div>
                       <div className={css.tourConfirmed}>Tour Confirmed</div>
                     </div>
