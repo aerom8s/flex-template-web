@@ -111,7 +111,7 @@ export const LandingPageComponent = props => {
                   <div className={css.customerCardNext}>
                     <div className={css.customerCardInfo}>
                       <h2 className={css.customerCardHeader}>
-                        Own your <br /> customers
+                        Gain more<br /> customers
                       </h2>
                       <p className={css.customerCardPara}>
                         Our best - in -class CRM comes standard, to <br />
@@ -166,6 +166,61 @@ export const LandingPageComponent = props => {
                         flights you accept.
                       </p>
                     </div>
+                  </div>
+
+
+                  <div className={css.customerCardNext}>
+                    <div className={css.customerCardInfo}>
+                      <h2 className={css.customerCardHeader}>
+                        Built by pilots, <br />
+                        for pilots.
+                      </h2>
+                      <p className={css.customerCardPara}>
+                        Our founding team includes pilots and <br />
+                        aviation enthusiasts, and every feature we <br />
+                        build is developed in partnership with our <br />
+                        operators. We're building the future of <br />
+                        aviation together.
+                      </p>
+                    </div>
+                    <img
+                      className={css.customerImage}
+                      src={tempImage}
+                      alt="tour pending / confirmed"
+                    />
+                  </div>
+                  <div className={css.customerCardNext}>
+                    <img
+                      className={css.customerImage}
+                      src={tempImage}
+                      alt="tour pending / confirmed"
+                    />
+                    <div className={css.customerCardInfo}>
+                      <h2 className={css.customerCardHeader}>
+                        Own the customer <br />
+                        search to booking <br />
+                        communication
+                      </h2>
+                      <p className={css.customerCardPara}>
+                        Aeromates messaging system makes it <br />
+                        easy for you to accept, modify, or deny <br />
+                        flight requests.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className={css.nextSection}>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <h2 className={css.operatorHeader2}>Aeromate's Press & Events</h2>
+                </div>
+                <div className={css.customerContainer}>
+                  <div className={css.sponsorImgs}>
+                    <div>Forbes</div>
+                    <div>Google</div>
+                    <div>Orange County</div>
+                    <div>Los Angeles</div>
                   </div>
                 </div>
               </div>

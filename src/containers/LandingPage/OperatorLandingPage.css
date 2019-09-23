@@ -15,12 +15,9 @@
 
 .root {}
 
-
 /* heroContainer gives the height for SectionHero */
 
-
 /* Safari has a bug with vw padding inside flexbox. Therefore we need an extra div (container) */
-
 
 /* If you've lot of content for the hero, multiple lines of text, make sure to adjust min-heights for each media breakpoint accordingly */
 
@@ -66,7 +63,6 @@
     overflow: auto;
 }
 
-
 /* Square corners for the last section if it's even */
 
 .section:nth-of-type(2n):last-of-type {
@@ -74,7 +70,6 @@
         border-radius: 4px 4px 0 0;
     }
 }
-
 
 /* Every other section has a light background */
 
@@ -106,7 +101,6 @@
     composes: sectionContent;
     margin-top: 3vh;
 }
-
 
 /* A bar on top of light sections */
 
@@ -242,6 +236,7 @@
     background-color: #FAFAFC;
     padding-top: 123px;
 }
+
 .customerCardNext {
     display: flex;
     flex-direction: row;
@@ -280,6 +275,7 @@
     position: relative;
     left: 12%;
 }
+
 .tourPendingContainer {
     display: flex;
     flex-direction: column;
@@ -288,6 +284,7 @@
     border: 1px solid black;
     background-color: #FAFAFC;
 }
+
 .tourPending {
     border: 1px solid gray;
     background-color: white;
@@ -301,6 +298,7 @@
     left: 16%;
     top: -10%;
 }
+
 .tourConfirmed {
     border: 1px solid gray;
     background-color: white;
@@ -315,6 +313,7 @@
     right: 16%;
     bottom: -10%;
 }
+
 .tourContainer {
     display: flex;
     flex-direction: row;
@@ -322,21 +321,33 @@
     margin: auto;
     width: 80%;
 }
+
 .tourProfileImg {
     width: 25%;
     height: auto;
     border-radius: 50%;
     border: 1px solid black;
 }
+
 .tourCompany {
     width: 25%;
     height: auto;
     border-radius: 50%;
     border: 1px solid black;
 }
+
 .tourArrows {
     width: 15%;
     height: 55%;
     border: 1px solid black;
     align-self: center;
+}
+
+.sponsorImgs {
+    display: flex;
+    width: 50%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: auto;
+    max-width: 14%;
 }
