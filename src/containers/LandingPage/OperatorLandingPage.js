@@ -24,9 +24,17 @@ import operatorHero from '../../assets/operatorHero.jpg';
 import facebookImage from '../../assets/saunatimeFacebook-1200x630.jpg';
 import twitterImage from '../../assets/saunatimeTwitter-600x314.jpg';
 import tempImage from '../../assets/placeholder.png';
+import wave from '../../assets/AddProfile.svg';
+import think from '../../assets/EnterEase.svg';
+import shake from '../../assets/Open4Business.svg';
+
+import tempMessages from '../../assets/tempMessages.PNG';
 import charterCard from '../../assets/charterCard.png';
 import womanImage from '../../assets/Woman.svg';
 import operatorImage from '../../assets/Operator.svg';
+import forbes from '../../assets/forbes-logo.png'
+import google from '../../assets/google.png'
+
 import css from './OperatorLandingPage.css';
 
 export const LandingPageComponent = props => {
@@ -82,13 +90,13 @@ export const LandingPageComponent = props => {
               </div>
               <div className={css.imageContainer}>
                 <div className={css.cardContainer}>
-                  <img className={css.imgStyle} src={tempImage} alt="student at desk" />
+                  <img className={css.imgStyle} src={wave} alt="student at desk" />
                   <p className={css.cardPara}>
                     Create a custom profile for <br /> your company.
                   </p>
                 </div>
                 <div className={css.cardContainer}>
-                  <img className={css.imgStyle} src={tempImage} alt="student at desk" />
+                  <img className={css.imgStyle} src={think} alt="student at desk" />
                   <p className={css.cardPara}>
                     Easily enter your aircraft, and <br /> and set booking times for charters,{' '}
                     <br />
@@ -96,7 +104,7 @@ export const LandingPageComponent = props => {
                   </p>
                 </div>
                 <div className={css.cardContainer}>
-                  <img className={css.imgStyle} src={tempImage} alt="student at desk" />
+                  <img className={css.imgStyle} src={shake} alt="student at desk" />
                   <p className={css.cardPara}>
                     That's it, you're open <br />
                     for Business.
@@ -105,7 +113,7 @@ export const LandingPageComponent = props => {
               </div>
               <div className={css.nextSection}>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <h2 className={css.operatorHeader2}> Why Aeromates ? </h2>
+                  <h2 className={css.operatorHeader}> Why Aeromates ? </h2>
                 </div>
                 <div className={css.customerContainer}>
                   <div className={css.customerCardNext}>
@@ -192,7 +200,7 @@ export const LandingPageComponent = props => {
                   <div className={css.customerCardNext}>
                     <img
                       className={css.customerImage}
-                      src={tempImage}
+                      src={tempMessages}
                       alt="tour pending / confirmed"
                     />
                     <div className={css.customerCardInfo}>
@@ -215,15 +223,27 @@ export const LandingPageComponent = props => {
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <h2 className={css.operatorHeader2}>Aeromate's Press & Events</h2>
                 </div>
-                <div className={css.customerContainer}>
-                  <div className={css.sponsorImgs}>
-                    <div>Forbes</div>
-                    <div>Google</div>
-                    <div>Orange County</div>
-                    <div>Los Angeles</div>
-                  </div>
+                {/* <div className={css.customerContainer}> */}
+                <div className={css.sponsorImgs}>
+                  <img className={css.pressEvents} src={forbes} alt="forbes" />
+                  <img className={css.pressEvents} src={google} alt="google cloud" />
+                  <img className={css.pressEvents} src={forbes} alt="forbes" />
+                  <img className={css.pressEvents} src={google} alt="google cloud" />
+                </div>
+                {/* </div> */}
+              </div>
+
+              <div className={css.nextSection}>
+                <div className={css.getStarted}>
+                  <h2 className={css.getStartedHeader}>Get Started Today</h2>
+                  <p className={css.getStartedPara}>Aeromates can help you streamline your business big <br />
+                    or small. Schedule a demo today and we'd be happy to <br />
+                    discuss your business unique needs.
+                      </p>
+                  <button className={css.getStartedBtn}>Request a Demo</button>
                 </div>
               </div>
+
             </div>
           </Container>
         </LayoutWrapperMain>
