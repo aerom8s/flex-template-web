@@ -8,8 +8,10 @@ import {
   EmailVerificationPage,
   InboxPage,
   LandingPage,
+  OperatorLandingPage,
   ListingPage,
   ManageListingsPage,
+  OperatorAddAircraftPage,
   NotFoundPage,
   PasswordChangePage,
   PasswordRecoveryPage,
@@ -52,6 +54,11 @@ const routeConfiguration = () => {
       path: '/',
       name: 'LandingPage',
       component: props => <LandingPage {...props} />,
+    },
+    {
+      path: '/operator',
+      name: 'OperatorLandingPage',
+      component: props => <OperatorLandingPage {...props} />,
     },
     {
       path: '/about',
@@ -242,6 +249,14 @@ const routeConfiguration = () => {
       authPage: 'LoginPage',
       component: props => <ManageListingsPage {...props} />,
       loadData: ManageListingsPage.loadData,
+    },
+    {
+      path: '/aircrafts',
+      name: 'OperatorAddAircraftPage',
+      auth: true,
+      authPage: 'LoginPage',
+      component: props => <OperatorAddAircraftPage {...props} />,
+      loadData: OperatorAddAircraftPage.loadData,
     },
     {
       path: '/account',
