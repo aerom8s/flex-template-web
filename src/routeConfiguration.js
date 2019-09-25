@@ -8,8 +8,10 @@ import {
   EmailVerificationPage,
   InboxPage,
   LandingPage,
+  OperatorLandingPage,
   ListingPage,
   ManageListingsPage,
+  OperatorAddAircraftPage,
   NotFoundPage,
   PasswordChangePage,
   PasswordRecoveryPage,
@@ -23,8 +25,6 @@ import {
   StyleguidePage,
   TermsOfServicePage,
   TransactionPage,
-  OperatorAuthPage,
-  ProfileSettingsOperatorPage,
 } from './containers';
 
 // routeConfiguration needs to initialize containers first
@@ -53,6 +53,11 @@ const routeConfiguration = () => {
       path: '/',
       name: 'LandingPage',
       component: LandingPage,
+    },
+    {
+      path: '/operator',
+      name: 'OperatorLandingPage',
+      component: props => <OperatorLandingPage {...props} />,
     },
     {
       path: '/about',
@@ -177,27 +182,6 @@ const routeConfiguration = () => {
       component: props => <OperatorAuthPage {...props} tab="signup" />,
     },
     {
-      // ***************************
-      // operator path for login
-      // USE ROUTE WHEN ON OPERATOR
-      // LANDING PAGE
-      // ***************************
-      path: '/operator/login',
-      name: 'LoginPage',
-      component: props => <OperatorAuthPage {...props} tab="login" />,
-    },
-    {
-      // ***************************
-      // operator paths added
-      // for signup
-      // USE ROUTE WHEN ON OPERATOR
-      // LANDING PAGE
-      // ***************************
-      path: '/operator/signup',
-      name: 'SignupPage',
-      component: props => <OperatorAuthPage {...props} tab="signup" />,
-    },
-    {
       path: '/recover-password',
       name: 'PasswordRecoveryPage',
       component: props => <PasswordRecoveryPage {...props} />,
@@ -255,6 +239,14 @@ const routeConfiguration = () => {
       authPage: 'LoginPage',
       component: props => <ManageListingsPage {...props} />,
       loadData: ManageListingsPage.loadData,
+    },
+    {
+      path: '/aircrafts',
+      name: 'OperatorAddAircraftPage',
+      auth: true,
+      authPage: 'LoginPage',
+      component: props => <OperatorAddAircraftPage {...props} />,
+      loadData: OperatorAddAircraftPage.loadData,
     },
     {
       path: '/account',

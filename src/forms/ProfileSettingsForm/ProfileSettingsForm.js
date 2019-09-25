@@ -10,8 +10,77 @@ import { propTypes } from '../../util/types';
 import * as validators from '../../util/validators';
 import { isUploadImageOverLimitError } from '../../util/errors';
 import { Form, Avatar, Button, ImageFromFile, IconSpinner, FieldTextInput } from '../../components';
+import { Dropdown, Menu } from 'semantic-ui-react'
+import moment from 'moment'
 
 import css from './ProfileSettingsForm.css';
+
+const open = [
+  { key: 1, text: 'Monday', value: 1 },
+  { key: 2, text: 'Tuesday', value: 2 },
+  { key: 3, text: 'Wednesday', value: 3 },
+  { key: 4, text: 'Thursday', value: 4 },
+  { key: 5, text: 'Friday', value: 5 },
+  { key: 6, text: 'Saturday', value: 6 },
+  { key: 7, text: 'Sunday', value: 7 },
+]
+const thru = [
+  { key: 1, text: 'Monday', value: 1 },
+  { key: 2, text: 'Tuesday', value: 2 },
+  { key: 3, text: 'Wednesday', value: 3 },
+  { key: 4, text: 'Thursday', value: 4 },
+  { key: 5, text: 'Friday', value: 5 },
+  { key: 6, text: 'Saturday', value: 6 },
+  { key: 7, text: 'Sunday', value: 7 },
+]
+
+let timeCollection = [
+
+]
+
+const locale = 'en';
+let timeTemp = {
+  openHours: [],
+  halfHours: [],
+  key: 0,
+  value: 0
+}
+
+moment.locale(locale);
+
+for (let hour = 0; hour < 24; hour++) {
+  timeTemp.key += 1
+  timeTemp.value += 1
+  timeTemp.openHours.push(timeTemp.key)
+  timeTemp.openHours.push(moment({ hour }).format('h:mm A'));
+  timeTemp.openHours.push(timeTemp.value)
+  timeTemp.key += 1
+  timeTemp.value += 1
+  timeTemp.openHours.push(timeTemp.key)
+  timeTemp.openHours.push(
+    moment({
+      hour,
+      minute: 30
+    }).format('h:mm A')
+  );
+  timeTemp.openHours.push(timeTemp.value)
+}
+
+for (let count = 0; count < timeTemp.openHours.length; count++) {
+  if (typeof timeTemp.openHours[count] === "string") {
+    // console.log(timeTemp.openHours[count], "Count")
+    timeCollection.push({
+      text: timeTemp.openHours[count],
+      key: timeTemp.openHours[count - 1],
+      value: timeTemp.openHours[count + 1]
+    })
+  }
+
+  // console.log(timeTemp.openHours[count], "Count")
+}
+
+// console.log(timeTemp.openHours)
+console.log(timeCollection)
 
 const ACCEPT_IMAGES = 'image/*';
 const UPLOAD_CHANGE_DELAY = 2000; // Show spinner so that browser has time to load img srcset
@@ -71,6 +140,36 @@ class ProfileSettingsFormComponent extends Component {
           });
           const firstNamePlaceholder = intl.formatMessage({
             id: 'ProfileSettingsForm.firstNamePlaceholder',
+          });
+          const websiteUrlLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.websiteUrlLabel',
+          });
+          const addressLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.addressLabel',
+          });
+          const addressPlaceholder = intl.formatMessage({
+            id: 'ProfileSettingsForm.addressPlaceholder',
+          });
+          const websiteUrlPlaceholder = intl.formatMessage({
+            id: 'ProfileSettingsForm.websiteUrlPlaceholder',
+          });
+          const twitterLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.twitterLabel',
+          });
+          const instagramLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.instagramLabel',
+          });
+          const linkedInLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.linkedInLabel',
+          });
+          const twitterPlaceholder = intl.formatMessage({
+            id: 'ProfileSettingsForm.twitterPlaceholder',
+          });
+          const facebookLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.facebookLabel',
+          });
+          const firstNameExtra = intl.formatMessage({
+            id: 'ProfileSettingsForm.nameExtra',
           });
           const firstNameRequiredMessage = intl.formatMessage({
             id: 'ProfileSettingsForm.firstNameRequired',
@@ -152,15 +251,15 @@ class ProfileSettingsFormComponent extends Component {
                 </div>
               </div>
             ) : (
-              <div className={css.avatarPlaceholder}>
-                <div className={css.avatarPlaceholderText}>
-                  <FormattedMessage id="ProfileSettingsForm.addYourProfilePicture" />
+                <div className={css.avatarPlaceholder}>
+                  <div className={css.avatarPlaceholderText}>
+                    <FormattedMessage id="ProfileSettingsForm.addYourProfilePicture" />
+                  </div>
+                  <div className={css.avatarPlaceholderTextMobile}>
+                    <FormattedMessage id="ProfileSettingsForm.addYourProfilePictureMobile" />
+                  </div>
                 </div>
-                <div className={css.avatarPlaceholderTextMobile}>
-                  <FormattedMessage id="ProfileSettingsForm.addYourProfilePictureMobile" />
-                </div>
-              </div>
-            );
+              );
 
           const submitError = updateProfileError ? (
             <div className={css.error}>
@@ -266,7 +365,8 @@ class ProfileSettingsFormComponent extends Component {
                     placeholder={firstNamePlaceholder}
                     validate={firstNameRequired}
                   />
-                  <FieldTextInput
+
+                  {/* <FieldTextInput
                     className={css.lastName}
                     type="text"
                     id="lastName"
@@ -274,24 +374,130 @@ class ProfileSettingsFormComponent extends Component {
                     label={lastNameLabel}
                     placeholder={lastNamePlaceholder}
                     validate={lastNameRequired}
-                  />
+                  /> */}
                 </div>
+                <h3 className={css.sectionTitle} style={{ marginTop: "2%" }}>
+                  <FormattedMessage id="ProfileSettingsForm.nameExtra" />
+                </h3>
               </div>
-              <div className={classNames(css.sectionContainer, css.lastSection)}>
+              <div className={classNames(css.sectionContainer)}>
                 <h3 className={css.sectionTitle}>
                   <FormattedMessage id="ProfileSettingsForm.bioHeading" />
                 </h3>
                 <FieldTextInput
                   type="textarea"
+                  className={css.textAreaStyle}
                   id="bio"
                   name="bio"
                   label={bioLabel}
                   placeholder={bioPlaceholder}
                 />
-                <p className={css.bioInfo}>
-                  <FormattedMessage id="ProfileSettingsForm.bioInfo" />
-                </p>
               </div>
+              <div className={classNames(css.sectionContainer)}>
+
+                <h3 className={css.sectionTitle}>
+                  <FormattedMessage id="ProfileSettingsForm.socialHeading" />
+                </h3>
+                <FieldTextInput
+                  className={css.firstName}
+                  type="text"
+                  id="websiteURL"
+                  name="websiteURL"
+                  label={websiteUrlLabel}
+                  placeholder={websiteUrlPlaceholder}
+                // validate={websiteUrlRequired}
+                />
+                <br></br>
+                <FieldTextInput
+                  className={css.firstName}
+                  type="text"
+                  id="facebook"
+                  name="facebook"
+                  label={facebookLabel}
+                  placeholder={websiteUrlPlaceholder}
+                // validate={websiteUrlRequired}
+                />
+                <br></br>
+                <FieldTextInput
+                  className={css.firstName}
+                  type="text"
+                  id="twitter"
+                  name="twitter"
+                  label={twitterLabel}
+                  placeholder={twitterPlaceholder}
+                // validate={websiteUrlRequired}
+                />
+                <br></br>
+                <FieldTextInput
+                  className={css.firstName}
+                  type="text"
+                  id="instagram"
+                  name="instagram"
+                  label={instagramLabel}
+                  placeholder={twitterPlaceholder}
+                // validate={websiteUrlRequired}
+                />
+                <br></br>
+                <FieldTextInput
+                  className={css.firstName}
+                  type="text"
+                  id="linkedIn"
+                  name="linkedIn"
+                  label={linkedInLabel}
+                  placeholder={websiteUrlPlaceholder}
+                // validate={websiteUrlRequired}
+                />
+              </div>
+
+
+              <h3 className={css.sectionTitle}>
+                <FormattedMessage id="ProfileSettingsForm.businessHeading" />
+              </h3>
+
+              <Menu compact className={css.menuStyle}>
+                <div>
+                  <label className={css.menuLabel}>Open</label>
+                  <Dropdown placeholder="Monday" options={open} item />
+                </div>
+                <div>
+                  <label className={css.menuLabel}>Thru</label>
+                  <Dropdown placeholder="Friday" options={thru} item />
+                </div>
+                <div>
+                  <label className={css.menuLabel}>Open</label>
+                  <Dropdown placeholder="7:30 AM" selection options={timeCollection} item />
+                </div>
+                <div>
+                  <label className={css.menuLabel}>Close</label>
+                  <Dropdown placeholder="8:00 PM" options={timeCollection} item />
+                </div>
+              </Menu>
+              <br />
+              <h3 className={css.sectionTitle}>
+                <FormattedMessage id="ProfileSettingsForm.addTime" />
+              </h3>
+
+              <br />
+              <br />
+              <br />
+
+              <div className={classNames(css.sectionContainer, css.lastSection)}>
+                <h3 className={css.sectionTitle}>
+                  <FormattedMessage id="ProfileSettingsForm.locationHeading" />
+                </h3>
+
+                <FieldTextInput
+                  className={css.firstName}
+                  type="text"
+                  id="address"
+                  name="address"
+                  label={addressLabel}
+                  placeholder={addressPlaceholder}
+                // validate={websiteUrlRequired}
+                />
+              </div>
+
+
               {submitError}
               <Button
                 className={css.submitButton}

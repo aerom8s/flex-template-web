@@ -296,7 +296,10 @@
 }
 
 .firstName {
-  width: calc(34% - 9px);
+  /* width: calc(34% - 9px); */
+  width: 100%;
+  font-size: 18px;
+
 }
 
 .lastName {
@@ -306,12 +309,27 @@
 .bioInfo {
   color: var(--matterColorAnti);
   margin-top: 11px;
+  font-size: 18px;
 
   @media (--viewportMedium) {
     margin-top: 16px;
   }
 }
 
+.textAreaStyle {
+  font-size: 18px;
+}
+
 .submitButton {
   margin-top: 24px;
+}
+
+.menuStyle {
+  border: none !important;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.menuLabel {
+ text-align: center;
 }
