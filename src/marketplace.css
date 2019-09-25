@@ -26,6 +26,7 @@
       url('../../assets/background-1440.jpg'); */
     background: linear-gradient(-45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
       url('../../assets/Charter Hero Image.jpg');
+      /* url('../../assets/background-1440.jpg'); */
 
     /* Add loading color for the div */
     background-color: var(--matterColor);
@@ -121,7 +122,7 @@
   /* ================ LocationAutocompleteInput bottom attribution padding ================ */
 
   /* Google Maps needs 72px bottom padding to accommodate logo, Mapbox doesn't have one */
-  --locationAutocompleteBottomPadding: 8px;
+  --locationAutocompleteBottomPadding: 72px;
 
   /* ================ Clearfix solution ================ */
 
