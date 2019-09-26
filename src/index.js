@@ -33,87 +33,87 @@ import * as log from './util/log';
 import { LoggingAnalyticsHandler, GoogleAnalyticsHandler } from './analytics/handlers';
 
 import './marketplaceIndex.css';
-import 'semantic-ui-css/semantic.min.css'
+import './semantic-ui-css/semantic.min.css';
 
 const { BigDecimal } = sdkTypes;
 
 const render = (store, shouldHydrate) => {
-  // If the server already loaded the auth information, render the app
-  // immediately. Otherwise wait for the flag to be loaded and render
-  // when auth information is present.
-  const authInfoLoaded = store.getState().Auth.authInfoLoaded;
-  const info = authInfoLoaded ? Promise.resolve({}) : store.dispatch(authInfo());
-  info
-    .then(() => {
-      store.dispatch(fetchCurrentUser());
-      if (shouldHydrate) {
-        ReactDOM.hydrate(<ClientApp store={store} />, document.getElementById('root'));
-      } else {
-        ReactDOM.render(<ClientApp store={store} />, document.getElementById('root'));
-      }
-    })
-    .catch(e => {
-      log.error(e, 'browser-side-render-failed');
-    });
+	// If the server already loaded the auth information, render the app
+	// immediately. Otherwise wait for the flag to be loaded and render
+	// when auth information is present.
+	const authInfoLoaded = store.getState().Auth.authInfoLoaded;
+	const info = authInfoLoaded ? Promise.resolve({}) : store.dispatch(authInfo());
+	info
+		.then(() => {
+			store.dispatch(fetchCurrentUser());
+			if (shouldHydrate) {
+				ReactDOM.hydrate(<ClientApp store={store} />, document.getElementById('root'));
+			} else {
+				ReactDOM.render(<ClientApp store={store} />, document.getElementById('root'));
+			}
+		})
+		.catch((e) => {
+			log.error(e, 'browser-side-render-failed');
+		});
 };
 
 const setupAnalyticsHandlers = () => {
-  let handlers = [];
+	let handlers = [];
 
-  // Log analytics page views and events in dev mode
-  if (config.dev) {
-    handlers.push(new LoggingAnalyticsHandler());
-  }
+	// Log analytics page views and events in dev mode
+	if (config.dev) {
+		handlers.push(new LoggingAnalyticsHandler());
+	}
 
-  // Add Google Analytics handler if tracker ID is found
-  if (process.env.REACT_APP_GOOGLE_ANALYTICS_ID) {
-    handlers.push(new GoogleAnalyticsHandler(window.ga));
-  }
+	// Add Google Analytics handler if tracker ID is found
+	if (process.env.REACT_APP_GOOGLE_ANALYTICS_ID) {
+		handlers.push(new GoogleAnalyticsHandler(window.ga));
+	}
 
-  return handlers;
+	return handlers;
 };
 
 // If we're in a browser already, render the client application.
 if (typeof window !== 'undefined') {
-  // set up logger with Sentry DSN client key and environment
-  log.setup();
+	// set up logger with Sentry DSN client key and environment
+	log.setup();
 
-  const baseUrl = config.sdk.baseUrl ? { baseUrl: config.sdk.baseUrl } : {};
+	const baseUrl = config.sdk.baseUrl ? { baseUrl: config.sdk.baseUrl } : {};
 
-  // eslint-disable-next-line no-underscore-dangle
-  const preloadedState = window.__PRELOADED_STATE__ || '{}';
-  const initialState = JSON.parse(preloadedState, sdkTypes.reviver);
-  const sdk = createInstance({
-    transitVerbose: config.sdk.transitVerbose,
-    clientId: config.sdk.clientId,
-    secure: config.usingSSL,
-    typeHandlers: [
-      {
-        type: BigDecimal,
-        customType: Decimal,
-        writer: v => new BigDecimal(v.toString()),
-        reader: v => new Decimal(v.value),
-      },
-    ],
-    ...baseUrl,
-  });
-  const analyticsHandlers = setupAnalyticsHandlers();
-  const store = configureStore(initialState, sdk, analyticsHandlers);
+	// eslint-disable-next-line no-underscore-dangle
+	const preloadedState = window.__PRELOADED_STATE__ || '{}';
+	const initialState = JSON.parse(preloadedState, sdkTypes.reviver);
+	const sdk = createInstance({
+		transitVerbose: config.sdk.transitVerbose,
+		clientId: config.sdk.clientId,
+		secure: config.usingSSL,
+		typeHandlers: [
+			{
+				type: BigDecimal,
+				customType: Decimal,
+				writer: (v) => new BigDecimal(v.toString()),
+				reader: (v) => new Decimal(v.value)
+			}
+		],
+		...baseUrl
+	});
+	const analyticsHandlers = setupAnalyticsHandlers();
+	const store = configureStore(initialState, sdk, analyticsHandlers);
 
-  require('./util/polyfills');
-  render(store, !!window.__PRELOADED_STATE__);
+	require('./util/polyfills');
+	render(store, !!window.__PRELOADED_STATE__);
 
-  if (config.dev) {
-    // Expose stuff for the browser REPL
-    window.app = {
-      config,
-      sdk,
-      sdkTypes,
-      store,
-      sample,
-      routeConfiguration: routeConfiguration(),
-    };
-  }
+	if (config.dev) {
+		// Expose stuff for the browser REPL
+		window.app = {
+			config,
+			sdk,
+			sdkTypes,
+			store,
+			sample,
+			routeConfiguration: routeConfiguration()
+		};
+	}
 }
 
 // Export the function for server side rendering.
